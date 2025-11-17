@@ -1,0 +1,283 @@
+github.com/AlDanial/cloc v 2.06  T=0.24 s (440.9 files/s, 84024.4 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Markdown                        15           1621              7           4996
+Go                              19            791            249           4799
+JSON                             4              0              0           3577
+Python                           8            245            196            857
+YAML                            12             24             25            707
+HTML                            14              9              0            444
+Bourne Shell                     9             63             33            385
+Text                             5             51              0            364
+SQL                             11             13              0            136
+CSS                              1             20              4            111
+CSV                              1              2              0             96
+Groovy                           1             13             22             66
+make                             1              8              2             34
+HCL                              2              4              0             16
+INI                              1              0              0             10
+SVG                              1              0              0              9
+-------------------------------------------------------------------------------
+SUM:                           105           2864            538          16607
+-------------------------------------------------------------------------------
+.
+├── ai_docs
+│   ├── GEMENI.md
+│   ├── prompts.txt
+│   ├── style.md
+│   └── TESTS.md
+├── bin
+│   ├── dcdr
+│   ├── dcdr-server
+│   └── server
+├── builds
+│   └── rl-9
+│       ├── dcdr.spec
+│       ├── etc
+│       │   └── dcdr
+│       │       ├── backends.d
+│       │       │   ├── aws-1.cfg
+│       │       │   ├── azure-1.cfg
+│       │       │   ├── bao-1.cfg
+│       │       │   ├── bao-2.cfg
+│       │       │   ├── conjur-1.cfg
+│       │       │   └── vault-1.cfg
+│       │       ├── server.cfg
+│       │       └── ssl
+│       │           ├── dcdr.crt
+│       │           └── dcdr.key
+│       ├── pgsql-schema.sql
+│       ├── SELinux
+│       │   ├── dcdr.fc
+│       │   ├── dcdr.if
+│       │   └── dcdr.te
+│       └── systemd
+│           ├── dcdr-server.service
+│           └── tmpfiles.d
+│               └── dcdr-server.conf
+├── certs
+├── cmd
+│   ├── client
+│   │   └── main.go
+│   └── server
+│       ├── api
+│       │   └── swagger.yaml
+│       ├── main.go
+│       └── ui
+│           ├── applications.html
+│           ├── favicon.svg
+│           ├── index.html
+│           ├── login.html
+│           ├── style.css
+│           ├── templates
+│           │   ├── application.html
+│           │   ├── applications.html
+│           │   ├── audit.html
+│           │   ├── backends.html
+│           │   ├── layout.html
+│           │   ├── login.html
+│           │   ├── secret_value.html
+│           │   ├── secrets.html
+│           │   ├── token.html
+│           │   └── users.html
+│           └── users.html
+├── config
+│   ├── backends.d
+│   │   ├── aws-1.cfg
+│   │   ├── azure-1.cfg
+│   │   ├── bao-1.cfg
+│   │   ├── bao-2.cfg
+│   │   ├── conjur-1.cfg
+│   │   └── vault-1.cfg
+│   ├── server.cfg
+│   └── ssl
+│       ├── dcdr.crt
+│       └── dcdr.key
+├── db
+│   └── migrations
+│       ├── 001_initial_schema.sql
+│       ├── 002_create_tainted_secrets.sql
+│       ├── 003_create_applications.sql
+│       ├── 004_create_secret_backend_mapping.sql
+│       ├── 005_drop_tainted_secrets.sql
+│       ├── 006_add_tainted_to_secret_backend_mapping.sql
+│       ├── 007_create_key_shards.sql
+│       ├── 008_create_application_users.sql
+│       ├── 009_create_audit_log.sql
+│       └── 010_alter_audit_log_user_id.sql
+├── docker
+│   ├── bao-1
+│   │   ├── bao-1-keys
+│   │   ├── openbao-compose.yml
+│   │   └── openbao-config.hcl
+│   ├── bao-2
+│   │   ├── bao-2-keys
+│   │   ├── openbao-compose.yml
+│   │   └── openbao-config.hcl
+│   ├── conjur-1
+│   │   ├── CHANGELOG.md
+│   │   ├── conf
+│   │   │   ├── default.conf
+│   │   │   ├── policy
+│   │   │   │   └── BotApp.yml
+│   │   │   └── tls
+│   │   │       ├── nginx.crt
+│   │   │       ├── nginx.key
+│   │   │       └── tls.conf
+│   │   ├── conjur-1-admin_data
+│   │   ├── CONTRIBUTING.md
+│   │   ├── data_key
+│   │   ├── docker-compose.yml
+│   │   ├── Jenkinsfile
+│   │   ├── LICENSE
+│   │   ├── my_app_data
+│   │   ├── program.sh
+│   │   ├── README.md
+│   │   ├── SECURITY.md
+│   │   ├── telemetry
+│   │   │   ├── dashboard.png
+│   │   │   ├── docker-compose.yml
+│   │   │   ├── files
+│   │   │   │   ├── grafana
+│   │   │   │   │   ├── dashboards
+│   │   │   │   │   │   ├── alerts_rev1.json
+│   │   │   │   │   │   ├── conjur-dashboard.json
+│   │   │   │   │   │   ├── prometheus-2.0-stats.json
+│   │   │   │   │   │   └── prometheus-stats.json
+│   │   │   │   │   ├── grafana.ini
+│   │   │   │   │   ├── provisioning
+│   │   │   │   │   │   ├── dashboards
+│   │   │   │   │   │   │   └── dashboard.yml
+│   │   │   │   │   │   └── datasources
+│   │   │   │   │   │       └── datasource.yml
+│   │   │   │   │   └── storage
+│   │   │   │   └── prometheus
+│   │   │   │       ├── alert.yml
+│   │   │   │       └── prometheus.yml
+│   │   │   ├── README.md
+│   │   │   └── select-dashboard.png
+│   │   └── test_workflow.sh
+│   ├── dcdr-postgres
+│   │   └── postgres-compose.yml
+│   ├── openbao-config.hcl
+│   └── vault-1
+│       ├── docker-vault.sh
+│       └── vault-1-keys
+├── docs
+│   ├── api
+│   │   └── API-DOCS.md
+│   ├── demos
+│   │   └── INTERNAL-July-29-2025.md
+│   ├── notes.txt
+│   ├── testing
+│   │   └── Testing.md
+│   └── Usage.md
+├── go.mod
+├── go.sum
+├── Images
+│   ├── data_flow.png
+│   ├── UI-Bug-01.png
+│   ├── UI-Bug-02.png
+│   ├── UI-Bug-03.png
+│   ├── UI-Bug-04.png
+│   ├── UI-Bug-05.png
+│   └── UI-Bug-06.png
+├── internal
+│   ├── api
+│   │   ├── app_users.go
+│   │   ├── handlers.go
+│   │   └── hub.go
+│   ├── backend
+│   │   ├── aws
+│   │   │   └── aws.go
+│   │   ├── azure
+│   │   │   └── azure.go
+│   │   ├── backend.go
+│   │   ├── conjur
+│   │   │   └── conjur.go
+│   │   ├── openbao
+│   │   │   └── openbao.go
+│   │   └── vault
+│   │       └── vault.go
+│   ├── config
+│   │   └── config.go
+│   ├── middleware
+│   │   ├── audit.go
+│   │   └── logging.go
+│   └── ui
+│       └── handlers.go
+├── logs
+│   ├── access.log
+│   └── error.log
+├── Makefile
+├── man
+│   ├── man1
+│   │   └── dcdr.1
+│   └── man8
+│       └── dcdr-server.8
+├── README.md
+├── sdk
+│   ├── c
+│   ├── c#
+│   ├── cpp
+│   ├── dcdr-sdk-go-v1
+│   │   ├── example
+│   │   │   ├── dcdr-audit-logs-2025-09-10-10-51-37-1.csv
+│   │   │   ├── dcdr-audit-logs-2025-09-10-10-51-37.zip
+│   │   │   ├── go.mod
+│   │   │   ├── main.go
+│   │   │   └── old_main.go
+│   │   ├── README.md
+│   │   └── sdk.go
+│   ├── dcdr-sdk-python-v1
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   └── sdk.cpython-313.pyc
+│   │   ├── example
+│   │   │   ├── dcdr_sdk_python_v1
+│   │   │   │   ├── __pycache__
+│   │   │   │   │   └── sdk.cpython-313.pyc
+│   │   │   │   └── sdk.py
+│   │   │   ├── old_test.py
+│   │   │   └── python_sdk_test.py
+│   │   ├── README.md
+│   │   └── sdk.py
+│   └── tmp
+│       └── list_methods.go
+├── staging
+├── stats.txt
+├── tmp
+│   ├── config
+│   │   ├── backends.d
+│   │   │   └── vault-1.cfg
+│   │   ├── server.cfg
+│   │   └── ssl
+│   │       ├── dcdr.crt
+│   │       └── dcdr.key
+│   ├── counter.txt
+│   ├── logs
+│   │   ├── access.log
+│   │   └── error.log
+│   ├── ssl
+│   │   ├── dcdr.crt
+│   │   └── dcdr.key
+│   └── staging
+└── tools
+    ├── python
+    │   ├── clean_bao.py
+    │   ├── clean_vault.py
+    │   ├── migrate-secret
+    │   ├── monitor_secrets
+    │   └── stream_audit_logs
+    └── sh
+        ├── counter.txt
+        ├── create_app.sh
+        ├── drop_db.sh
+        ├── env.sh
+        ├── init_db.sh
+        ├── names.txt
+        ├── run_test-backup.sh
+        └── run_tests.sh
+
+85 directories, 173 files

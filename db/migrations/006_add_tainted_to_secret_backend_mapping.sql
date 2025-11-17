@@ -1,0 +1,1 @@
+ALTER TABLE secret_backend_mapping ADD COLUMN tainted BOOLEAN NOT NULL DEFAULT FALSE;

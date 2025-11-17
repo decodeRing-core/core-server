@@ -1,0 +1,9 @@
+#BACKEND_NAME = "conjur-1"
+#BACKEND_TYPE = 
+#CONJUR_ADDR = 
+#CONJUR_ACCOUNT = 
+#NO_SSL_VERIFY = true
+#CONJUR_ADMIN_KEY = 
+#
+# The CyberArk Conjur backend is under active development
+

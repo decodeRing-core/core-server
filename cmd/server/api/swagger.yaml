@@ -1,0 +1,417 @@
+openapi: 3.0.0
+info:
+  title: dcdr API
+  description: API for the dcdr server
+  version: 1.0.0
+servers:
+  - url: /api
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: Server is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+  /dcdrIdent:
+    get:
+      summary: Get server instance ID
+      responses:
+        '200':
+          description: Server instance ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  instance_id:
+                    type: string
+  /dcdrAuth:
+    post:
+      summary: Authenticate with the server
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Authentication successful
+        '401':
+          description: Authentication failed
+  /dcdrRegister:
+    post:
+      summary: Register an application
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppRegistrationRequest'
+      responses:
+        '200':
+          description: Application registered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  app_id:
+                    type: string
+  /dcdrCreateSecret:
+    post:
+      summary: Create a secret
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecretCreationRequest'
+      responses:
+        '200':
+          description: Secret created
+  /dcdrGet:
+    post:
+      summary: Get a secret
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecretRequest'
+      responses:
+        '200':
+          description: Secret value
+          content:
+            application/json:
+              schema:
+                type: object
+  /dcdrTaint:
+    post:
+      summary: Taint a secret
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecretRequest'
+      responses:
+        '200':
+          description: Secret tainted
+  /dcdrUntaint:
+    post:
+      summary: Untaint a secret
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecretRequest'
+      responses:
+        '200':
+          description: Secret untainted
+  /dcdrDestroy:
+    post:
+      summary: Destroy a secret
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecretRequest'
+      responses:
+        '200':
+          description: Secret destroyed
+  /dcdrIsTainted:
+    post:
+      summary: Check if a secret is tainted
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecretRequest'
+      responses:
+        '200':
+          description: Tainted status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tainted:
+                    type: boolean
+  /dcdrRotate:
+    post:
+      summary: Rotate a secret (Not Implemented)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecretRequest'
+      responses:
+        '501':
+          description: Not Implemented
+  /dcdrListApps:
+    get:
+      summary: List registered applications
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    app_id:
+                      type: string
+                    app_name:
+                      type: string
+  /dcdrListSecrets:
+    post:
+      summary: List secrets for an application
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                app_id:
+                  type: string
+      responses:
+        '200':
+          description: List of secrets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    secret_name:
+                      type: string
+                    backend:
+                      type: string
+                    mount_path:
+                      type: string
+                    tainted:
+                      type: boolean
+  /dcdrListBackends:
+    get:
+      summary: List configured backends
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of backends
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    backend:
+                      type: string
+                    num_applications:
+                      type: integer
+                    num_secrets:
+                      type: integer
+  /dcdrDeleteApp:
+    post:
+      summary: Delete an application
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppDeleteRequest'
+      responses:
+        '200':
+          description: Application deleted
+  /dcdrWhoami:
+    get:
+      summary: Print the current user's information
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: User information
+  /dcdrAudit/download:
+    get:
+      summary: Download the audit log bundle
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: format
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [json, csv]
+      responses:
+        '200':
+          description: Audit log bundle
+          content:
+            application/zip: {}
+  /dcdrAppUser/create:
+    post:
+      summary: Create an application user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                app_id:
+                  type: string
+                app_name:
+                  type: string
+      responses:
+        '200':
+          description: Application user created
+  /dcdrAppUser/list:
+    get:
+      summary: List application users
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of application users
+  /dcdrAppUser/suspend:
+    post:
+      summary: Suspend an application user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+      responses:
+        '200':
+          description: Application user suspended
+  /dcdrAppUser/unsuspend:
+    post:
+      summary: Unsuspend an application user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+      responses:
+        '200':
+          description: Application user unsuspended
+  /dcdrAppUser/delete:
+    post:
+      summary: Delete an application user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+      responses:
+        '200':
+          description: Application user deleted
+  /dcdrAppUser/getToken:
+    post:
+      summary: Get an application user's token
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+      responses:
+        '200':
+          description: Application user token
+components:
+  schemas:
+    AppRegistrationRequest:
+      type: object
+      properties:
+        app_name:
+          type: string
+    SecretCreationRequest:
+      type: object
+      properties:
+        app_id:
+          type: string
+        secret_name:
+          type: string
+        backend:
+          type: string
+        mount_path:
+          type: string
+        data:
+          type: object
+    SecretRequest:
+      type: object
+      properties:
+        app_id:
+          type: string
+        secret_name:
+          type: string
+    AppDeleteRequest:
+      type: object
+      properties:
+        app_id:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
