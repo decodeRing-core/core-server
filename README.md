@@ -7,6 +7,19 @@
 
 ⭐ Star us on GitHub — your support means a lot to us! 🙏😊
 
+## Table of Contents
+- [About](#-about)
+- [What's New](#-whats-new)
+- [Usage](#-usage)
+- [Documentation](#-documentation)
+- [Architecture](#-architecture)
+- [Installation](#-installation)
+- [How to Build](#-how-to-build)
+- [Roadmap](#-roadmap)
+- [Feedback & Contributions](#-feedback--contributions)
+- [License](#-license)
+- [Contacts](#-contacts)
+
 ## 🚀 About
 decodeRing is an open-source security orchestration layer written in Go that de-risks and accelerates secrets vault consolidation across clouds and vendors. decodeRing does this by implementing the [dcdr open standard](https://github.com/decodeRing-core/dcdr-standard) via RESTful API.
 
@@ -182,7 +195,7 @@ We've made every effort to provide documentation to help users stand up a test i
 
 Please feel free to contribute by [submitting an issue](https://github.com/decodeRing-core/core-server/issues) or [joining the discussions](https://github.com/orgs/decodeRing-core/discussions). Every contribution helps us improve decodeRing.
 
-## License
+## 📃 License
 Licensed under the Apache License, Version 2.0.
 
 ## 💬 Contacts
