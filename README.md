@@ -27,6 +27,8 @@ This allows developers to focus on coding instead of learning how to interact wi
 
 The 'dcdr-server' comes accompanied with the `dcdr` CLI tool that allows users and administrators to interact with the server.
 
+[Back to top](#top)
+
 ## ✨ What's New
 
 ### Version 0.1.0-alpha (Latest)
@@ -51,6 +53,8 @@ The 'dcdr-server' comes accompanied with the `dcdr` CLI tool that allows users a
 📖 **Swagger API Docs**
 
 ![Swagger API Docs](https://decodering.org/wp-content/uploads/2025/11/Screenshot-2025-11-17-at-10.45.29-AM.png)
+
+[Back to top](#top)
 
 ## 📘 Usage
 
@@ -142,19 +146,26 @@ The server supports multiple secret manager backends. Configuration for each is 
 ##### Audit Log Management
 - `dcdr download-audit-logs [--json | --csv] [--out <filename>]`: Download the audit log bundle.
 
+[Back to top](#top)
 
 ## 📚 Documentation
 
 - [dcdr-server man page](https://decodering.org)
 - [dcdr man page](https://decodering.org)
 
+[Back to top](#top)
+
 ## 📐 Architecture
 
 ![High level architecture](https://decodering.org/wp-content/uploads/2025/11/high-level-arch.excalidraw-scaled.png)
 
+[Back to top](#top)
+
 ## 💾 Installation
 
 - [EL9 RPMs](https://decodering.org)
+
+[Back to top](#top)
 
 ## 🔨 How to Build
 
@@ -182,9 +193,13 @@ make build
 
 ```
 
+[Back to top](#top)
+
 ## 🚗 Roadmap
 
 TBD
+
+[Back to top](#top)
 
 ## 🤝 Feedback & Contributions
 
@@ -195,8 +210,12 @@ We've made every effort to provide documentation to help users stand up a test i
 
 Please feel free to contribute by [submitting an issue](https://github.com/decodeRing-core/core-server/issues) or [joining the discussions](https://github.com/orgs/decodeRing-core/discussions). Every contribution helps us improve decodeRing.
 
+[Back to top](#top)
+
 ## 📃 License
 Licensed under the Apache License, Version 2.0.
+
+[Back to top](#top)
 
 ## 💬 Contacts
 
