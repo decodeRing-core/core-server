@@ -1,0 +1,92 @@
+policy_module(dcdr, 1.0)
+
+########################################
+#
+# Declarations
+#
+
+type dcdr_server_t;
+type dcdr_server_exec_t;
+init_daemon_domain(dcdr_server_t, dcdr_server_exec_t)
+
+type dcdr_server_conf_t;
+files_config_file(dcdr_server_conf_t)
+
+type dcdr_server_log_t;
+logging_log_file(dcdr_server_log_t)
+
+type dcdr_server_port_t;
+corenet_port(dcdr_server_port_t)
+
+type dcdr_client_t;
+type dcdr_client_exec_t;
+application_domain(dcdr_client_t, dcdr_client_exec_t)
+
+########################################
+#
+# dcdr-server local policy
+#
+
+# Basic process permissions
+allow dcdr_server_t self:process { fork signal_perms };
+allow dcdr_server_t self:fifo_file rw_fifo_file_perms;
+allow dcdr_server_t self:unix_stream_socket create_stream_socket_perms;
+
+# Configuration file access
+allow dcdr_server_t dcdr_server_conf_t:dir list_dir_perms;
+allow dcdr_server_t dcdr_server_conf_t:file read_file_perms;
+
+# Log file access
+allow dcdr_server_t dcdr_server_log_t:dir { add_name remove_name write };
+allow dcdr_server_t dcdr_server_log_t:file { create_file_perms append_file_perms };
+
+# Network permissions - TCP server
+allow dcdr_server_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_bind_generic_node(dcdr_server_t)
+
+# Allow binding specifically to our declared dcdr_server_port_t
+allow dcdr_server_t dcdr_server_port_t:tcp_socket name_bind;
+
+# Standard daemon requirements
+files_read_etc_files(dcdr_server_t)
+libs_use_ld_so(dcdr_server_t)
+libs_use_shared_libs(dcdr_server_t)
+miscfiles_read_localization(dcdr_server_t)
+
+# Logging
+logging_send_syslog_msg(dcdr_server_t)
+
+# Allow reading /proc/sys/net for network configuration
+kernel_read_net_sysctls(dcdr_server_t)
+
+########################################
+#
+# dcdr-client local policy
+#
+
+# Basic process permissions
+allow dcdr_client_t self:process signal_perms;
+allow dcdr_client_t self:fifo_file rw_fifo_file_perms;
+
+# Network permissions - TCP client
+allow dcdr_client_t self:tcp_socket create_stream_socket_perms;
+
+# Explicitly allow connecting to the dcdr-server port type
+allow dcdr_client_t dcdr_server_port_t:tcp_socket name_connect;
+
+# Standard application requirements
+files_read_etc_files(dcdr_client_t)
+libs_use_ld_so(dcdr_client_t)
+libs_use_shared_libs(dcdr_client_t)
+miscfiles_read_localization(dcdr_client_t)
+
+# Allow reading /proc/sys/net for network configuration
+kernel_read_net_sysctls(dcdr_client_t)
+
+########################################
+#
+# Inter-domain communication
+#
+
+# Allow server to accept/read/write client sockets
+allow dcdr_server_t dcdr_client_t:tcp_socket { read write getattr };
