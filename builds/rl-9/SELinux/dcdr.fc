@@ -1,4 +1,0 @@
-/usr/sbin/dcdr-server		--	gen_context(system_u:object_r:dcdr_server_exec_t,s0)
-/usr/bin/dcdr			--	gen_context(system_u:object_r:dcdr_client_exec_t,s0)
-/etc/dcdr(/.*)?				gen_context(system_u:object_r:dcdr_server_conf_t,s0)
-/var/log/dcdr(/.*)?			gen_context(system_u:object_r:dcdr_server_log_t,s0)
