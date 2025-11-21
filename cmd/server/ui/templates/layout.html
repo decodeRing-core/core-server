@@ -1,0 +1,59 @@
+{{define "layout"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>decodeRing - {{.Title}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <div id="main-container">
+        <header>
+            <div class="logo">
+                <img src="/static/favicon.svg" alt="logo" height="32">
+                <h1>decodeRing</h1>
+            </div>
+            <div class="user-info">
+                <span id="user-display">User: {{.Username}}</span>
+                <form action="/logout" method="post" style="display: inline;">
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+        </header>
+        <main>
+            <nav>
+                <ul>
+                    {{if .IsRoot}}
+                    <li><a href="/" class="{{if eq .Title "Secrets Backends"}}active{{end}}">Secrets Backends</a></li>
+                    <li><a href="/users" class="{{if eq .Title "User Management"}}active{{end}}">User Management</a></li>
+                    <li><a href="/audit" class="{{if eq .Title "Audit Logs"}}active{{end}}">Audit Logs</a></li>
+                    {{end}}
+                    <li><a href="/applications" class="{{if eq .Title "Applications"}}active{{end}}">Applications</a></li>
+                </ul>
+            </nav>
+            <section id="content">
+                {{if eq .Title "Secrets Backends"}}
+                    {{template "backends" .}}
+                {{else if eq .Title "User Management"}}
+                    {{template "users" .}}
+                {{else if eq .Title "Applications"}}
+                    {{template "applications" .}}
+                {{else if eq .Title "User Token"}}
+                    {{template "token" .}}
+                {{else if eq .Title "Application Secrets"}}
+                    {{template "secrets" .}}
+                {{else if eq .Title "Application"}}
+                    {{template "application" .}}
+                {{else if eq .Title "Secret Value"}}
+                    {{template "secret_value" .}}
+                {{else if eq .Title "Audit Logs"}}
+                    {{template "audit" .}}
+                {{end}}
+            </section>
+        </main>
+    </div>
+</body>
+</html>
+{{end}}

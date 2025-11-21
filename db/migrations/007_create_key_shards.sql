@@ -1,0 +1,5 @@
+CREATE TABLE key_shards (
+  id SERIAL PRIMARY KEY,
+  shard TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

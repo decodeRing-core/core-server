@@ -1,0 +1,185 @@
+.TH dcdr 1 "2025-07-29" "1.0" "dcdr man page"
+.SH NAME
+dcdr \- a command-line client for the dcdr server
+.SH SYNOPSIS
+.B dcdr
+[\fIglobal options\fR] \fIcommand\fR [\fIcommand options\fR] [\fIarguments\fR]
+.SH DESCRIPTION
+.B dcdr
+is a command-line client for interacting with a dcdr server. It allows you to manage applications, secrets, and backends.
+
+Upon successful authentication with the 'auth' command, the client will cache the authentication token in ~/.dcdr/token. Subsequent commands will automatically use this cached token. The token can also be provided via the DCDR_TOKEN environment variable or the --token flag.
+.SH GLOBAL OPTIONS
+.TP
+.B \-\-addr
+The address of the dcdr server.
+.TP
+.B \-\-token
+The authentication token to use.
+.TP
+.B \-\-skip-verify
+Skip SSL certificate verification.
+.SH ENVIRONMENT VARIABLES
+.TP
+.B DCDR_TOKEN
+Specifies the authentication token to use.
+.TP
+.B DCDR_SKIP_VERIFY
+If set to "true", the client will bypass SSL certificate verification.
+.SH COMMANDS
+.SS auth
+Authenticate with the server. If no token is provided via the --token flag, the command will prompt for it.
+.TP
+.B \-\-token
+The authentication token to use.
+.SS create
+Create a new secret.
+.TP
+.B \-\-appid
+The application ID.
+.TP
+.B \-\-name
+The name of the secret.
+.TP
+.B \-\-backend
+The backend to use for the secret.
+.TP
+.B \-\-mount
+The mount path for the backend.
+.TP
+.B \-\-data
+The secret data, in JSON format.
+.SS get
+Get a secret.
+.TP
+.B \-\-appid
+The application ID.
+.TP
+.B \-\-name
+The name of the secret.
+.SS register
+Register a new application.
+.TP
+.B \-\-name
+The name of the application.
+.SS taint
+Taint a secret.
+.TP
+.B \-\-appid
+The application ID.
+.TP
+.B \-\-name
+The name of the secret.
+.SS untaint
+Untaint a secret.
+.TP
+.B \-\-appid
+The application ID.
+.TP
+.B \-\-name
+The name of the secret.
+.SS destroy
+Destroy a secret.
+.TP
+.B \-\-appid
+The application ID.
+.TP
+.B \-\-name
+The name of the secret.
+.SS istainted
+Check if a secret is tainted.
+.TP
+.B \-\-appid
+The application ID.
+.TP
+.B \-\-name
+The name of the secret.
+.SS listapps
+List all applications.
+.SS listsecrets
+List all secrets for an application.
+.TP
+.B \-\-appid
+The application ID.
+.SS list-backends
+List configured backends and their usage statistics.
+.SS app-user
+Manage application users. This command is only available to root users. It has the following subcommands:
+.TP
+\fBcreate\fR
+Create a new application user.
+.RS
+.TP
+\fB\-\-appid\fR
+The application ID.
+.TP
+\fB\-\-name\fR
+The name of the user.
+.RE
+.TP
+\fBlist-users\fR
+List all application users.
+.RS
+.TP
+\fB\-\-table\fR
+Format the output as a table.
+.RE
+.TP
+\fBsuspend-user\fR
+Suspend an application user.
+.RS
+.TP
+\fB\-\-userid\fR
+The user ID.
+.RE
+.TP
+\fBunsuspend-user\fR
+Unsuspend an application user.
+.RS
+.TP
+\fB\-\-userid\fR
+The user ID.
+.RE
+.TP
+\fBdelete-user\fR
+Delete an application user.
+.RS
+.TP
+\fB\-\-userid\fR
+The user ID.
+.RE
+.TP
+\fBget-token\fR
+Get an application user's token.
+.RS
+.TP
+\fB\-\-userid\fR
+The user ID.
+.RE
+.SS logout
+Log out the current user.
+.SS whoami
+Print the current user's information.
+.TP
+.B \-\-table
+Format the output as a table.
+.SS download-audit-logs
+Download the audit log bundle as a zip archive. One of --csv or --json must be specified.
+.TP
+.B \-\-csv
+Download the audit logs in CSV format.
+.TP
+.B \-\-json
+Download the audit logs in JSON format.
+.TP
+.B \-\-out
+Specify the output filename. If not provided, a timestamped filename will be used.
+.SH EXAMPLES
+.TP
+.B dcdr create --appid 123 --name my-secret --backend vault --mount secret --data '{"foo":"bar"}'
+Create a new secret named "my-secret" for the application with ID "123".
+.TP
+.B dcdr get --appid 123 --name my-secret
+Get the secret named "my-secret" for the application with ID "123".
+.SH SEE ALSO
+.BR dcdr-server (8)

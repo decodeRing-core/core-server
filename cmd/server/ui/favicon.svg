@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32">
+    <defs>
+        <style>
+            .ci-primary { fill: #000000; }
+        </style>
+    </defs>
+    <path class="ci-primary" d="M77.8,43.2H74V30.3C74,17.4,62.6,6,49.7,6S25.4,17.4,25.4,30.3V43.2h-3.8c-2.1,0-3.8,1.7-3.8,3.8V90c0,2.1,1.7,3.8,3.8,3.8h55.4c2.1,0,3.8-1.7,3.8-3.8V47C81.6,44.9,79.9,43.2,77.8,43.2z M33.3,30.3c0-9,7.4-16.4,16.4-16.4s16.4,7.4,16.4,16.4V43.2H33.3V30.3z"/>
+    <text x="50" y="77" font-size="38" font-weight="bold" fill="#FFFFFF" text-anchor="middle" font-family="sans-serif">d</text>
+</svg>

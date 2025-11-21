@@ -1,0 +1,51 @@
+{{define "title"}}Audit Logs{{end}}
+
+{{define "audit"}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Audit Logs</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <a href="/api/dcdrAudit/download?format=csv" class="btn btn-primary">Download CSV</a>
+                        <a href="/api/dcdrAudit/download?format=json" class="btn btn-primary">Download JSON</a>
+                    </div>
+                    <div id="audit-log-window" style="height: 500px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const logWindow = document.getElementById('audit-log-window');
+    const socket = new WebSocket(`wss://${window.location.host}/api/dcdrAudit/stream`);
+
+    socket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        const logEntry = document.createElement('div');
+        logEntry.textContent = `[${data.timestamp}] User: ${data.user_id}, App: ${data.app_id}, Action: ${data.action}, Denied: ${data.denied}, Reason: ${data.reason}`;
+        logWindow.appendChild(logEntry);
+
+        // Keep the buffer to 1000 lines
+        if (logWindow.children.length > 1000) {
+            logWindow.removeChild(logWindow.firstChild);
+        }
+
+        // Scroll to the bottom
+        logWindow.scrollTop = logWindow.scrollHeight;
+    };
+
+    socket.onclose = function(event) {
+        console.error('WebSocket closed:', event);
+    };
+
+    socket.onerror = function(error) {
+        console.error('WebSocket error:', error);
+    };
+</script>
+{{end}}

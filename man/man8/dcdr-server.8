@@ -1,0 +1,77 @@
+.TH dcdr-server 8 "2025-07-29" "1.0" "dcdr Server Manuals"
+.SH NAME
+dcdr-server \- a server for managing secrets
+.SH SYNOPSIS
+.B dcdr-server
+[\fIoptions\fR]
+.br
+.B dcdr-server generate-ssl
+[\fI--out <path>\fR]
+.SH DESCRIPTION
+.B dcdr-server
+is a server that provides a unified API for managing secrets across multiple backends.
+
+On the first run, the server will generate three encryption key shards and a root authentication token. The key shards are stored in the 'key_shards' table in the database, and both the shards and the root token are printed to the console. The root token should be used to authenticate as the 'root' user.
+.SH COMMANDS
+.TP
+.B generate-ssl
+Generates a self-signed SSL certificate and private key for the server.
+.RS
+.TP
+.B --out
+Specifies the directory where the generated certificate and key files will be saved. Defaults to `config/ssl`.
+.RE
+.SH OPTIONS
+.TP
+.B \-c, \-\-config
+Path to the configuration file.
+.SH CONFIGURATION
+The server is configured using a .cfg file. The following options are available:
+.TP
+.B DB_USER
+The database user.
+.TP
+.B DB_PASSWORD
+The database password.
+.TP
+.B DB_NAME
+The database name.
+.TP
+.B DB_HOST
+The database host.
+.TP
+.B DB_PORT
+The database port.
+.TP
+.B VAULT_ADDR
+The address of the Vault server.
+.TP
+.B VAULT_TOKEN
+The Vault token to use.
+.TP
+.B BAO_ADDR
+The address of the OpenBao server.
+.TP
+.B BAO_TOKEN
+The OpenBao token to use.
+.TP
+.B DCDR_PORT
+The port for the dcdr server to listen on.
+.TP
+.B DCDR_USE_SSL
+Enable or disable SSL.
+.TP
+.B DCDR_SSL_CERT_FILE
+Path to the SSL certificate file.
+.TP
+.B DCDR_SSL_KEY_FILE
+Path to the SSL key file.
+.TP
+.B DCDR_UI
+Enable or disable the web UI.
+.SH UI
+When the UI is enabled, it is accessible at the /ui endpoint. The UI provides a web-based interface for managing backends, applications, and secrets.
+.SH APPLICATION USERS
+The server supports application-level users who have limited access to the API. These users can only access secrets associated with their assigned application and cannot perform administrative tasks such as managing backends or registering new applications. Application users are created by the root user using the 'dcdr app-user create' command.
+.SH SEE ALSO
+.BR dcdr (1)

@@ -1,0 +1,23 @@
+# Database Configuration
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
+DB_HOST=localhost
+DB_PORT=5432
+
+# Server Configuration
+DCDR_UI=true
+DCDR_PORT=8301
+DCDR_USE_SSL=true
+DCDR_SSL_CERT_FILE=config/ssl/dcdr.crt
+DCDR_SSL_KEY_FILE=config/ssl/dcdr.key
+BACKEND_CONFIG_DIR=config/backends.d
+# Logging
+ACCESS_LOG=logs/access.log
+ERROR_LOG=logs/error.log
+# Audit Logging
+AUDIT_ENABLED=true
+STAGING_PATH=staging
+AUDIT_CLEANUP_INTERVAL=2h
+AUDIT_RETENTION=10m
+NO_TLS_VERIFY=true

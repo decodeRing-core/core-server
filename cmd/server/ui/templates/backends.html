@@ -1,0 +1,29 @@
+{{define "backends"}}
+<h2>Secret Backends</h2>
+{{if .Backends}}
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Applications</th>
+            <th>Secrets</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{range .Backends}}
+        <tr>
+            <td>{{.Name}}</td>
+            <td>{{.Type}}</td>
+            <td>{{.NumApps}}</td>
+            <td>{{.NumSecrets}}</td>
+            <td>{{.Addr}}</td>
+        </tr>
+        {{end}}
+    </tbody>
+</table>
+{{else}}
+<p>No secret backends configured.</p>
+{{end}}
+{{end}}
