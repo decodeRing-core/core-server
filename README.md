@@ -1,5 +1,5 @@
 <a name="top"></a>
-[![decodeRing Core Server](https://decodering.org/wp-content/uploads/2025/11/Git-Banner-2-scaled.png)](https://decodering.org)
+[![decodeRing Core Server](https://org-web1.decodering.org/images/dcdr_banner.png)](https://decodering.org)
 ![Go](https://img.shields.io/badge/Go-1.24.4-blue) ![OS](https://img.shields.io/badge/OS-Linux_Windows_MacOS-green) ![CPU](https://img.shields.io/badge/CPU-x64-FF8C00) ![Release](https://img.shields.io/badge/Release-v0.1.0-blue) ![Release Date](https://img.shields.io/badge/Release_Date-November_2025-blue) ![License](https://img.shields.io/badge/License-Apache_2.0-blue)
 
 > [!IMPORTANT]
