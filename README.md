@@ -35,7 +35,7 @@ The 'dcdr-server' comes accompanied with the `dcdr` CLI tool that allows users a
 
 💻 **Simple Admin UI**
 
-![Admin UI](https://decodering.org/wp-content/uploads/2025/11/Screenshot-2025-11-17-at-10.43.08-AM-scaled.png)
+![Admin UI](https://org-web1.decodering.org/images/AdminUI.png)
 
 🚀 **Supported Secrets Back-Ends**
 
@@ -52,7 +52,7 @@ The 'dcdr-server' comes accompanied with the `dcdr` CLI tool that allows users a
 
 📖 **Swagger API Docs**
 
-![Swagger API Docs](https://decodering.org/wp-content/uploads/2025/11/Screenshot-2025-11-17-at-10.45.29-AM.png)
+![Swagger API Docs](https://org-web1.decodering.org/images/Swagger.png)
 
 [Back to top](#top)
 
