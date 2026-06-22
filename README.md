@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This repo has been archived.  The reference server has been re-written in rust and can be found here: [decodeRing Reference Implementation](https://github.com/decodeRing-core/dcdr)
+
 <a name="top"></a>
 [![decodeRing Core Server](https://org-web1.decodering.org/images/dcdr_banner.png)](https://decodering.org)
 ![Go](https://img.shields.io/badge/Go-1.24.4-blue) ![OS](https://img.shields.io/badge/OS-Linux_Windows_MacOS-green) ![CPU](https://img.shields.io/badge/CPU-x64-FF8C00) ![Release](https://img.shields.io/badge/Release-v0.1.0-blue) ![Release Date](https://img.shields.io/badge/Release_Date-November_2025-blue) ![License](https://img.shields.io/badge/License-Apache_2.0-blue)
